@@ -47,26 +47,6 @@ services:
     networks:
       - sample-microservice
 
-  client:
-    restart: always
-    container_name: sample-microservice-client
-    image: sample-microservice-client:latest
-    build: 
-      context: .
-      dockerfile: client/docker/Dockerfile
-      # args:
-      #   API_SERVER: ${API_SERVER_URL}
-    # environment:
-    #   NODE_ENV: ${NODE_ENV}
-    #   REACT_APP_PAYPAL_CLIENT_ID: ${REACT_APP_PAYPAL_CLIENT_ID}
-    command: sh -c "serve -s build -l 3000 --no-clipboard"
-    depends_on:
-      - server
-    expose:
-      - 3000
-    networks:
-      - sample-microservice
-
   nginx:
     restart: always
     container_name: sample-microservice-nginx
@@ -81,7 +61,6 @@ services:
       - 80:80
     depends_on:
       - server
-      - client
     networks:
       - sample-microservice
 
