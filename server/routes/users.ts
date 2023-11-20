@@ -9,16 +9,16 @@ router.get('/', async (req: Request, res: Response) => {
     return res.status(200).json(users)
 })
 
-router.post('/login', (req: Request, res: Response) => {
+router.post('/login', async (req: Request, res: Response) => {
     const { email, password }: FormInputs = req.body
 
-    const user = User.findOne({email, password});
+    const user = await User.findOne({email, password});
 
     if (!user) {
         return res.status(404).send('User Not Found!')
     }
 
-    return res.status(200).json(JSON.stringify(user))
+    return res.status(200).json(user)
 })
 
 router.post('/', async (req: Request, res: Response) => {
