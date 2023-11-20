@@ -14,8 +14,6 @@ router.post('/login', (req: Request, res: Response) => {
 
     const user = User.find({email, password});
 
-    console.log(user);
-
     if (!user) {
         return res.status(404).send('User Not Found!')
     }
