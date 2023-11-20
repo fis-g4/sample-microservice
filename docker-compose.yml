@@ -14,6 +14,19 @@ services:
   #   networks:
   #     - sample-microservice
 
+  mongo_db:
+    image: mongo:6.0
+    container_name: mongo_db
+    environment:
+        - MONGO_INITDB_ROOT_USERNAME=root
+        - MONGO_INITDB_ROOT_PASSWORD=password
+    ports:
+      - "27017:27017"
+    volumes:
+      - db:/data/db
+    networks:
+      - sample-microservice
+
   server:
     restart: always
     container_name: sample-microservice-backend
@@ -70,6 +83,11 @@ services:
 #   redis-data:
 #     name: flatter-redis-data
 
+volumes:
+  db:
+    name: sample-microservice-db
+  # redis-data:
+  #   name: flatter-redis-data
 
 networks:
   sample-microservice:
