@@ -14,9 +14,9 @@ services:
   #   networks:
   #     - sample-microservice
 
-  mongo_db:
+  mongo-db:
     image: mongo:6.0
-    container_name: mongo_db
+    container_name: mongo-db
     environment:
         - MONGO_INITDB_ROOT_USERNAME=root
         - MONGO_INITDB_ROOT_PASSWORD=password
@@ -37,7 +37,7 @@ services:
       dockerfile: server/docker/Dockerfile
     # command: bash -c "/usr/src/app/flatter-backend/entrypoint.sh  && daphne -b 0.0.0.0 -p 8000 backend.asgi:application"
     environment:
-      DB_URI: mongodb://mongo_db:27017
+      DB_URI: mongodb://mongo-db:27017
     #   DJANGO_ENV: ${DJANGO_ENV}
     #   DJANGO_ADMIN_USER: ${DJANGO_ADMIN_USER}
     #   DJANGO_ADMIN_EMAIL: ${DJANGO_ADMIN_EMAIL}
@@ -75,6 +75,7 @@ services:
       - 80:80
     depends_on:
       - server
+      - mongo_db
     networks:
       - sample-microservice
 
