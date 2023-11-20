@@ -12,7 +12,7 @@ router.get('/', async (req: Request, res: Response) => {
 router.post('/login', (req: Request, res: Response) => {
     const { email, password }: FormInputs = req.body
 
-    const user = User.find({email, password});
+    const user = User.findOne({email, password});
 
     if (!user) {
         return res.status(404).send('User Not Found!')
