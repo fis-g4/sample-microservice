@@ -36,8 +36,8 @@ services:
       context: .
       dockerfile: server/docker/Dockerfile
     # command: bash -c "/usr/src/app/flatter-backend/entrypoint.sh  && daphne -b 0.0.0.0 -p 8000 backend.asgi:application"
-    # environment:
-    #   DEBUG: ${DEBUG}
+    environment:
+      DB_URI: mongodb://mongo_db:27017
     #   DJANGO_ENV: ${DJANGO_ENV}
     #   DJANGO_ADMIN_USER: ${DJANGO_ADMIN_USER}
     #   DJANGO_ADMIN_EMAIL: ${DJANGO_ADMIN_EMAIL}
