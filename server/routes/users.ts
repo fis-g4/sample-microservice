@@ -18,7 +18,7 @@ router.post('/login', (req: Request, res: Response) => {
         return res.status(404).send('User Not Found!')
     }
 
-    return res.status(200).json(user)
+    return res.status(200).json(JSON.stringify(user))
 })
 
 router.post('/', async (req: Request, res: Response) => {
